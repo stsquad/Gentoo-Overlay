@@ -1,0 +1,12 @@
+--- src/mainwin.c	2005-11-06 01:32:13.000000000 -0600
++++ src/mainwin.c	2005-11-06 01:32:19.000000000 -0600
+@@ -67,9 +67,7 @@
+ 	XRenderPictureAttributes pa;
+ 	XRenderColor clear;
+ 	int error_base;
+-#ifdef XINERAMA
+ 	int event_base;
+-#endif /* XINERAMA */
+ 	
+ 	MainWin *mw = (MainWin *)malloc(sizeof(MainWin));
+ 	

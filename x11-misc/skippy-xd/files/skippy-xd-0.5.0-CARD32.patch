@@ -1,0 +1,156 @@
+diff -pu skippy-xd-0.5.0-original/src/clientwin.c skippy-xd-0.5.0/src/clientwin.c
+--- skippy-xd-0.5.0-original/src/clientwin.c	2006-10-15 15:25:02.000000000 +0200
++++ skippy-xd-0.5.0/src/clientwin.c	2006-10-15 15:26:27.000000000 +0200
+@@ -33,7 +33,7 @@ int
+ clientwin_validate_func(dlist *l, void *data)
+ {
+ 	ClientWin *cw = (ClientWin *)l->data;
+-	CARD32 desktop = (*(CARD32*)data),
++	unsigned long desktop = (*(unsigned long*)data),
+ 		w_desktop = wm_get_window_desktop(cw->mainwin->dpy, cw->client.window);
+ 	
+ #ifdef XINERAMA
+@@ -43,7 +43,7 @@ clientwin_validate_func(dlist *l, void *
+ 		return 0;
+ #endif
+ 	
+-	return (w_desktop == (CARD32)-1 || desktop == w_desktop) &&
++	return (w_desktop == (unsigned long)-1 || desktop == w_desktop) &&
+ 	       wm_validate_window(cw->mainwin->dpy, cw->client.window);
+ }
+ 
+diff -pu skippy-xd-0.5.0-original/src/skippy.c skippy-xd-0.5.0/src/skippy.c
+--- skippy-xd-0.5.0-original/src/skippy.c	2006-10-15 15:25:02.000000000 +0200
++++ skippy-xd-0.5.0/src/skippy.c	2006-10-15 15:26:17.000000000 +0200
+@@ -83,7 +83,7 @@ update_clients(MainWin *mw, dlist *clien
+ static dlist *
+ do_layout(MainWin *mw, dlist *clients, Window focus, Window leader)
+ {
+-	CARD32 desktop = wm_get_current_desktop(mw->dpy);
++	unsigned long desktop = wm_get_current_desktop(mw->dpy);
+ 	unsigned int width, height;
+ 	float factor;
+ 	int xoff, yoff;
+diff -pu skippy-xd-0.5.0-original/src/wm.c skippy-xd-0.5.0/src/wm.c
+--- skippy-xd-0.5.0-original/src/wm.c	2006-10-15 15:25:02.000000000 +0200
++++ skippy-xd-0.5.0/src/wm.c	2006-10-15 15:25:53.000000000 +0200
+@@ -258,7 +258,7 @@ wm_get_stack(Display *dpy)
+ 		return 0;
+ 	
+ 	for(i = 0; i < items_read; i++)
+-		l = dlist_add(l, (void*)((CARD32*)data)[i]);
++		l = dlist_add(l, (void*)((unsigned long*)data)[i]);
+ 	
+ 	XFree(data);
+ 	
+@@ -293,10 +293,10 @@ wm_get_root_pmap(Display *dpy)
+ 	return rootpmap;
+ }
+ 
+-CARD32
++unsigned long
+ wm_get_current_desktop(Display *dpy)
+ {
+-	CARD32 desktop = 0;
++	unsigned long desktop = 0;
+ 	unsigned char *data;
+ 	int status, real_format;
+ 	Atom real_type;
+@@ -309,7 +309,7 @@ wm_get_current_desktop(Display *dpy)
+ 	if(status != Success)
+ 		return 0;
+ 	if(items_read)
+-		desktop = ((CARD32*)data)[0];
++		desktop = ((unsigned long*)data)[0];
+ 	XFree(data);
+ 	
+ 	return desktop;
+@@ -411,7 +411,7 @@ wm_set_fullscreen(Display *dpy, Window w
+ 	if(WM_PERSONALITY == WM_PERSONALITY_NETWM && NETWM_HAS_FULLSCREEN)
+ 	{
+ 		Atom props[6];
+-		CARD32 desktop = (CARD32)-1;
++		unsigned long desktop = (unsigned long)-1;
+ 		
+ 		props[0] = _NET_WM_STATE_FULLSCREEN;
+ 		props[1] = _NET_WM_STATE_SKIP_TASKBAR;
+@@ -482,7 +482,7 @@ wm_validate_window(Display *dpy, Window 
+ 		
+ 		return result;
+ 	} else {
+-		CARD32 attr;
++		unsigned long attr;
+ 		
+ 		status = XGetWindowProperty(dpy, win, _WIN_STATE,
+ 		                  0L, 1L, False, XA_CARDINAL, &real_type, &real_format,
+@@ -493,7 +493,7 @@ wm_validate_window(Display *dpy, Window 
+ 				XFree(data);
+ 			return 0;
+ 		}
+-		attr = (((CARD32*)data)[0]) & (WIN_STATE_MINIMIZED |
++		attr = (((unsigned long*)data)[0]) & (WIN_STATE_MINIMIZED |
+ 		                             WIN_STATE_SHADED |
+ 		                             WIN_STATE_HIDDEN);
+ 		if(attr)
+@@ -513,7 +513,7 @@ wm_validate_window(Display *dpy, Window 
+ 					XFree(data);
+ 				return 1; /* If there's no _WIN_HINTS, assume it's 0, thus valid */
+ 			}
+-			attr = ((CARD32*)data)[0];
++			attr = ((unsigned long*)data)[0];
+ 			if(attr & WIN_HINTS_SKIP_TASKBAR)
+ 				result = 0;
+ 			XFree(data);
+@@ -523,14 +523,14 @@ wm_validate_window(Display *dpy, Window 
+ 	}
+ }
+ 
+-CARD32
++unsigned long
+ wm_get_window_desktop(Display *dpy, Window win)
+ {
+ 	int status, real_format;
+ 	Atom real_type;
+ 	unsigned long items_read, items_left;
+ 	unsigned char *data;
+-	CARD32 desktop = 0;
++	unsigned long desktop = 0;
+ 	
+ 	if(WM_PERSONALITY == WM_PERSONALITY_GNOME)
+ 	{
+@@ -540,7 +540,7 @@ wm_get_window_desktop(Display *dpy, Wind
+ 		if(status == Success)
+ 		{
+ 			if(items_read)
+-				desktop = (((CARD32*)data)[0] & WIN_STATE_STICKY) ? (CARD32)-1 : 0;
++				desktop = (((unsigned long*)data)[0] & WIN_STATE_STICKY) ? (unsigned long)-1 : 0;
+ 			
+ 			XFree(data);
+ 			
+@@ -558,7 +558,7 @@ wm_get_window_desktop(Display *dpy, Wind
+ 		return wm_get_current_desktop(dpy);
+ 	
+ 	if(items_read)
+-		desktop = ((CARD32*)data)[0];
++		desktop = ((unsigned long*)data)[0];
+ 	else
+ 		desktop = wm_get_current_desktop(dpy);
+ 	
+diff -pu skippy-xd-0.5.0-original/src/wm.h skippy-xd-0.5.0/src/wm.h
+--- skippy-xd-0.5.0-original/src/wm.h	2006-10-15 15:25:02.000000000 +0200
++++ skippy-xd-0.5.0/src/wm.h	2006-10-15 15:25:59.000000000 +0200
+@@ -66,12 +66,12 @@ char wm_check(Display *dpy);
+ void wm_use_netwm_fullscreen(Bool b);
+ dlist *wm_get_stack(Display *dpy);
+ Pixmap wm_get_root_pmap(Display *dpy);
+-CARD32 wm_get_current_desktop(Display *dpy);
++unsigned long wm_get_current_desktop(Display *dpy);
+ FcChar8 *wm_get_window_title(Display *dpy, Window window, int *length_return);
+ Window wm_get_group_leader(Display *dpy, Window window);
+ void wm_set_fullscreen(Display *dpy, Window window, int x, int y, unsigned int width, unsigned int height);
+ int wm_validate_window(Display *dpy, Window win);
+-CARD32 wm_get_window_desktop(Display *dpy, Window win);
++unsigned long wm_get_window_desktop(Display *dpy, Window win);
+ Window wm_get_focused(Display *dpy);
+ void wm_ignore_skip_taskbar(Bool b);
+ 
