@@ -44,6 +44,7 @@ src_compile() {
 
 	if use debug; then
 		append-flags -g3
+		replace-flags -Os -O0
 	fi
 
 	econf
