@@ -27,6 +27,7 @@ GST_PLUGINS_BUILD=""
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	epatch "${FILESDIR}/0001-Manual-fix-from-more-recent-branch.patch"
 	elibtoolize
 }
 
