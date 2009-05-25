@@ -9,7 +9,13 @@ MY_P=${P/_/}
 DESCRIPTION="The Ogg Vorbis sound file format library with aoTuV patch"
 HOMEPAGE="http://xiph.org/vorbis"
 SRC_URI="http://people.xiph.org/~giles/2008/${MY_P}.tar.bz2
-	aotuv? ( mirror://gentoo/aotuv-b5.6-1.2.1rc1.diff.bz2 )"
+	aotuv? ( mirror://gentoo/aotuv-b5.6-1.2.1rc1.diff.bz2 )
+"
+
+PATCHES=(
+	"${FILESDIR}/0001-Disable-underpopulated-huffman-tree-check.patch"
+)
+
 
 LICENSE="BSD"
 SLOT="0"
@@ -25,6 +31,7 @@ src_unpack() {
 	unpack ${MY_P}.tar.bz2
 	cd "${S}"
 	use aotuv && epatch "${DISTDIR}"/aotuv-b5.6-1.2.1rc1.diff.bz2
+	epatch "${FILESDIR}"/0001-Disable-underpopulated-huffman-tree-check.patch
 
 	rm ltmain.sh
 	AT_M4DIR=m4 eautoreconf

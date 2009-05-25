@@ -1,0 +1,36 @@
+From fe08d0bdb307a1ff365e2919e2e5472ed16b48cc Mon Sep 17 00:00:00 2001
+From: Alex Bennee <alex@bennee.com>
+Date: Mon, 25 May 2009 12:28:05 +0100
+Subject: [PATCH] Disable underpopulated huffman tree check
+
+As described in http://bugzilla.gnome.org/show_bug.cgi?id=582942 some Ogg files will
+play with this check disabled. Even with the latest gstreamer git attempting to play
+the file with skipping fails.
+---
+ lib/sharedbook.c |   10 +++++-----
+ 1 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/lib/sharedbook.c b/lib/sharedbook.c
+index 14f22ef..3a99121 100644
+--- a/lib/sharedbook.c
++++ b/lib/sharedbook.c
+@@ -126,11 +126,11 @@ ogg_uint32_t *_make_words(long *l,long n,long sparsecount){
+   }
+   
+   /* sanity check the huffman tree; an underpopulated tree must be rejected. */
+-  for(i=1;i<33;i++)
+-    if(marker[i] & (0xffffffffUL>>(32-i))){
+-      _ogg_free(r);
+-      return(NULL);
+-    }
++  /* for(i=1;i<33;i++) */
++  /*   if(marker[i] & (0xffffffffUL>>(32-i))){ */
++  /*     _ogg_free(r); */
++  /*     return(NULL); */
++  /*   } */
+ 
+   /* bitreverse the words because our bitwise packer/unpacker is LSb
+      endian */
+-- 
+1.6.0.6
+
