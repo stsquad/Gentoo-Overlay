@@ -21,10 +21,15 @@ RDEPEND="media-libs/libogg"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
+PATCHES=(
+	"${FILESDIR}/0001-Disable-underpopulated-huffman-tree-check.patch"
+)
+
 S=${WORKDIR}/${MY_P}
 
 src_prepare() {
 	use aotuv && epatch "${WORKDIR}"/${P}-aotuv_beta5.7.patch
+	epatch "${FILESDIR}"/0001-Disable-underpopulated-huffman-tree-check.patch
 
 	sed -e 's:-O20::g' -e 's:-mfused-madd::g' -e 's:-mcpu=750::g' \
 		-i configure.ac || die "sed failed"
