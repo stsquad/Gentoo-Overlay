@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libvorbis/libvorbis-1.2.1_rc1-r2.ebuild,v 1.1 2008/12/15 03:47:23 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libvorbis/libvorbis-1.2.1_rc1-r2.ebuild,v 1.6 2009/05/31 15:51:16 ranger Exp $
 
 EAPI="1"
 inherit autotools flag-o-matic eutils toolchain-funcs
@@ -9,17 +9,11 @@ MY_P=${P/_/}
 DESCRIPTION="The Ogg Vorbis sound file format library with aoTuV patch"
 HOMEPAGE="http://xiph.org/vorbis"
 SRC_URI="http://people.xiph.org/~giles/2008/${MY_P}.tar.bz2
-	aotuv? ( mirror://gentoo/aotuv-b5.6-1.2.1rc1.diff.bz2 )
-"
-
-PATCHES=(
-	"${FILESDIR}/0001-Disable-underpopulated-huffman-tree-check.patch"
-)
-
+	aotuv? ( mirror://gentoo/aotuv-b5.6-1.2.1rc1.diff.bz2 )"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86 ~x86-fbsd"
+KEYWORDS="~alpha amd64 ~arm hppa ~ia64 ~mips ppc ppc64 ~sh ~sparc x86 ~x86-fbsd"
 IUSE="+aotuv doc"
 
 RDEPEND=">=media-libs/libogg-1"
@@ -31,7 +25,6 @@ src_unpack() {
 	unpack ${MY_P}.tar.bz2
 	cd "${S}"
 	use aotuv && epatch "${DISTDIR}"/aotuv-b5.6-1.2.1rc1.diff.bz2
-	epatch "${FILESDIR}"/0001-Disable-underpopulated-huffman-tree-check.patch
 
 	rm ltmain.sh
 	AT_M4DIR=m4 eautoreconf
