@@ -113,6 +113,7 @@ src_unpack() {
 	# Fix null ptr check (https://bugs.freedesktop.org/show_bug.cgi?id=22408)
 	cd "${S}"
 	epatch "${FILESDIR}/nullptr.patch"
+	epatch "${FILESDIR}/assertfix.patch"
 }
 
 src_prepare() {
