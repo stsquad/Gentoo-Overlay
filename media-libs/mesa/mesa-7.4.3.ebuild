@@ -109,6 +109,10 @@ pkg_setup() {
 
 src_unpack() {
 	[[ $PV = 9999* ]] && git_src_unpack || unpack ${A}
+
+	# Fix null ptr check (https://bugs.freedesktop.org/show_bug.cgi?id=22408)
+	cd "${S}"
+	epatch "${FILESDIR}/nullptr.patch"
 }
 
 src_prepare() {
