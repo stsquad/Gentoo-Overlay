@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<herd>no-herd</herd>
+	<maintainer>
+		<email>maintainer-needed@gentoo.org</email>
+	</maintainer>
+	<longdescription lang="en">
+		OpenShot Video Editor is a free, open-source, non-linear video
+		editor, based on Python, GTK, and MLT.
+	</longdescription>
+	<use>
+		<flag name='dvgrab'>Enable DV video grabber support</flag>
+		<flag name='faac'>Use external faac library for AAC encoding</flag>
+		<flag name='faad'>Use external faad library for AAC decoding</flag>
+		<flag name='jack-rack'>Enable the JACK audio effects rack</flag>
+		<flag name='kino'>Enable kino plugin support</flag>
+	</use>
+</pkgmetadata>
