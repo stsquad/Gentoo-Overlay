@@ -50,17 +50,17 @@ S="${WORKDIR}/${P}/platform/gtk-x11"
 
 src_prepare() {
 	# install only needed locales
-	epatch "${FILESDIR}"/${P}-fix-locale.patch # upstream bug 12368
-	# fix debug mode
-	epatch "${FILESDIR}"/${P}-fix-debug.patch
-	# disable xine hack which is failing
-	epatch "${FILESDIR}"/${P}-disable-xine-hack.patch
-	# prevent installing unneeded test files
-	epatch "${FILESDIR}"/${P}-dont-install-test-files.patch # upstream bug 12370
-	# do not show --unittest option
-	epatch "${FILESDIR}"/${P}-remove-unittest-option.patch # upstream bug 12370
-	# remove 'pkg-config --list-all' call, bug 294183, upstream bug 4613
-	epatch "${FILESDIR}"/${P}-remove-pkg-config-list-all.patch
+	# epatch "${FILESDIR}"/${P}-fix-locale.patch # upstream bug 12368
+	# # fix debug mode
+	# epatch "${FILESDIR}"/${P}-fix-debug.patch
+	# # disable xine hack which is failing
+	# epatch "${FILESDIR}"/${P}-disable-xine-hack.patch
+	# # prevent installing unneeded test files
+	# epatch "${FILESDIR}"/${P}-dont-install-test-files.patch # upstream bug 12370
+	# # do not show --unittest option
+	# epatch "${FILESDIR}"/${P}-remove-unittest-option.patch # upstream bug 12370
+	# # remove 'pkg-config --list-all' call, bug 294183, upstream bug 4613
+	# epatch "${FILESDIR}"/${P}-remove-pkg-config-list-all.patch
 
 	# disable autoupdate
 	sed -i -e "/autoupdate/d" ../../portable/startup.py || die "sed failed"
