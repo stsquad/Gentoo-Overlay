@@ -51,14 +51,15 @@ S="${WORKDIR}/${P}/platform/gtk-x11"
 src_prepare() {
 	# fix debug mode
 	epatch "${FILESDIR}"/${PN}-2.5.3-fix-debug.patch
-	# disable xine hack which is failing
-	epatch "${FILESDIR}"/${PN}-2.5.3-disable-xine-hack.patch
 	# prevent installing unneeded test files
 	epatch "${FILESDIR}"/${PN}-2.5.3-dont-install-test-files.patch # upstream bug 12370
 	# do not show --unittest option
 	epatch "${FILESDIR}"/${PN}-2.5.3-remove-unittest-option.patch # upstream bug 12370
-	# remove 'pkg-config --list-all' call, bug 294183, upstream bug 4613
-	epatch "${FILESDIR}"/${PN}-2.5.3-remove-pkg-config-list-all.patch
+	# fix xpcom path detection failure
+	epatch "${FILESDIR}/${PN}-3.0.1-xpcom-path.patch"
+	# fix mozilla wrapper no longer exist
+	# <https://bugs.launchpad.net/ubuntu/+source/miro/+bug/537050>
+	epatch "${FILESDIR}/${PN}-3.0.1-mozembed-realize.patch"
 
 	# disable autoupdate
 	sed -i -e "/autoupdate/d" ../../portable/startup.py || die "sed failed"

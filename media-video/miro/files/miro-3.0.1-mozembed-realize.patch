@@ -1,0 +1,21 @@
+diff --git a/tv/linux/plat/frontends/widgets/widgetset.py b/tv/linux/plat/frontends/widgets/widgetset.py
+index c69306e..2be2d6f 100644
+--- a/tv/linux/plat/frontends/widgets/widgetset.py
++++ b/tv/linux/plat/frontends/widgets/widgetset.py
+@@ -54,6 +54,16 @@ class MiroMozEmbed(gtkmozembed.MozEmbed):
+         # if a site is deleted, which is not too often.
+         pass
+ 
++    def do_realize(self):
++        if not hasattr(self, 'mozembed_realized'):
++            gtkmozembed.MozEmbed.do_realize(self)
++            self.mozembed_realized = True
++        else:
++            self.set_flags(self.flags() | gtk.REALIZED)
++
++    def do_unrealize(self):
++        self.set_flags(self.flags() & ~gtk.REALIZED)
++
+ gobject.type_register(MiroMozEmbed)
+ 
+ class Browser(Widget):
