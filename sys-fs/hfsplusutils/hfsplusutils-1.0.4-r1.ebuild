@@ -12,7 +12,7 @@ SRC_URI="http://penguinppc.org/historical/hfsplus/${MY_P}.src.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="ppc ppc64 x86"
+KEYWORDS="ppc ppc64 x86 ~amd64"
 IUSE=""
 
 DEPEND="app-arch/bzip2"
