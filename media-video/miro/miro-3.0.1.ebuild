@@ -26,7 +26,7 @@ CDEPEND="
 	x11-libs/gtk+:2
 	x11-libs/libX11"
 RDEPEND="${CDEPEND}
-	gstreamer? ( dev-python/gst-python:0.10 )
+	gstreamer? ( dev-python/gst-python:0.10 media-plugins/gst-plugins-pango )
 	libnotify? ( dev-python/notify-python )
 	|| ( dev-lang/python[sqlite] dev-python/pysqlite:2 )
 	dev-python/dbus-python
