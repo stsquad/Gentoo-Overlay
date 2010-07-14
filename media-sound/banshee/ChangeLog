@@ -1,6 +1,87 @@
 # ChangeLog for media-sound/banshee
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/banshee/ChangeLog,v 1.101 2009/07/27 22:07:03 maekke Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/banshee/ChangeLog,v 1.117 2010/07/12 18:03:07 fauli Exp $
+
+  12 Jul 2010; Christian Faulhammer <fauli@gentoo.org> banshee-1.6.1.ebuild:
+  stable x86, bug 324241
+
+  09 Jul 2010; Pacho Ramos <pacho@gentoo.org> banshee-1.6.1.ebuild:
+  amd64 stable, bug 324241
+
+  05 Jul 2010; Pacho Ramos <pacho@gentoo.org> -banshee-1.4.3.ebuild,
+  -banshee-1.4.3-r1.ebuild, -files/banshee-1.5.5-volume-reset-fix.patch,
+  -files/banshee-1.5.5-volume-slider-fix.patch, -banshee-1.6.0.ebuild,
+  banshee-1.6.1.ebuild:
+  Ensure sys-apps/hal is present until upstream bug #612616 is solved (bug
+  #327031 by Derek Dolney). Remove old.
+
+  18 Jun 2010; Arun Raghavan <ford_prefect@gentoo.org>
+  -banshee-1.5.6.ebuild:
+  Remove old beta.
+
+*banshee-1.6.1 (18 Jun 2010)
+
+  18 Jun 2010; Arun Raghavan <ford_prefect@gentoo.org>
+  +banshee-1.6.1.ebuild:
+  Bump to 1.6.1. Mostly bug fixes.
+
+  01 Apr 2010; Arun Raghavan <ford_prefect@gentoo.org> banshee-1.6.0.ebuild:
+  Fix intltool breakage (thanks to plaes for pointing this out and providing
+  a fix).
+
+  01 Apr 2010; Arun Raghavan <ford_prefect@gentoo.org>
+  -banshee-1.5.3.ebuild, -banshee-1.5.4.ebuild, -banshee-1.5.5.ebuild:
+  Remove ebuilds for pre-releases. Leave one in, just in case.
+
+*banshee-1.6.0 (01 Apr 2010)
+
+  01 Apr 2010; Arun Raghavan <ford_prefect@gentoo.org>
+  +banshee-1.6.0.ebuild:
+  Bump to 1.6.0. This is the latest stable version with a huge number of new
+  features over the 1.4.x series. Just a bunch of bug fixes over 1.5.6.
+  Enabled the gapless playback plugin since we have the required
+  gst-plugins-base, and dropped unnecessary deps (thanks to suka on bug
+  #310601).
+
+*banshee-1.5.6 (25 Mar 2010)
+
+  25 Mar 2010; Arun Raghavan <ford_prefect@gentoo.org>
+  +banshee-1.5.6.ebuild:
+  Bump to 1.5.6 (a.k.a. 1.6 RC2). Contains a bunch of bug fixes.
+
+*banshee-1.5.5 (17 Mar 2010)
+
+  17 Mar 2010; Arun Raghavan <ford_prefect@gentoo.org>
+  +banshee-1.5.5.ebuild, +files/banshee-1.5.5-volume-reset-fix.patch,
+  +files/banshee-1.5.5-volume-slider-fix.patch, metadata.xml:
+  Bump to 1.5.5 (1.6 RC1). Drops some flags in favour of depending on
+  gst-plugins-meta, makes CD ripping support optional, and adds USE-flag
+  controlled support for the Youtube plugin.
+
+  25 Feb 2010; Arun Raghavan <ford_prefect@gentoo.org>
+  -banshee-1.5.0.ebuild, -banshee-1.5.2.ebuild:
+  Clean out ebuilds for old betas.
+
+*banshee-1.5.4 (25 Feb 2010)
+
+  25 Feb 2010; Arun Raghavan <ford_prefect@gentoo.org>
+  +banshee-1.5.4.ebuild, metadata.xml:
+  Bump to 1.5.4 (1.6 beta 5). Various new features and bug fixes. Also add a
+  wikipedia USE flag to support the Wikipedia plugin (which pulls in
+  net-libs/webkit-gtk).
+
+*banshee-1.5.3 (06 Feb 2010)
+
+  06 Feb 2010; Arun Raghavan <ford_prefect@gentoo.org> +banshee-1.5.3.ebuild:
+  Bump to 1.5.3 (a.k.a. 1.6.0 beta3)
+
+  24 Jan 2010; Brent Baude <ranger@gentoo.org> banshee-1.4.3-r2.ebuild:
+  Marking banshee-1.4.3-r2 ppc for bug 264568
+
+*banshee-1.5.2 (16 Jan 2010)
+
+  16 Jan 2010; Pacho Ramos <pacho@gentoo.org> +banshee-1.5.2.ebuild:
+  Version bump, new features and fixes
 
   27 Jul 2009; Markus Meier <maekke@gentoo.org> banshee-1.4.3-r2.ebuild:
   amd64 stable, bug #264568
