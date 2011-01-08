@@ -9,11 +9,11 @@ inherit git toolchain-funcs eutils
 DESCRIPTION="tool that helps you find what software is using the most power"
 HOMEPAGE="http://www.lesswatts.org/projects/powertop/"
 SRC_URI=""
-EGIT_REPO_URI="git://git.moblin.org/powertop"
+EGIT_REPO_URI="git://git.kernel.org/pub/scm/status/powertop/powertop.git"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64"
 IUSE="unicode"
 
 DEPEND="sys-libs/ncurses[unicode?]
