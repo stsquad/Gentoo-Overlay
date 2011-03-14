@@ -19,7 +19,8 @@ SLOT="0"
 KEYWORDS="~amd64"
 IUSE="examples"
 
-RDEPEND=""
+RDEPEND="dev-python/django"
+
 DEPEND="${RDEPEND}
 	dev-python/setuptools"
 
