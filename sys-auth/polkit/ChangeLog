@@ -1,0 +1,180 @@
+# ChangeLog for sys-auth/polkit
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-auth/polkit/ChangeLog,v 1.48 2011/04/30 17:48:57 armin76 Exp $
+
+  30 Apr 2011; Raúl Porcel <armin76@gentoo.org> polkit-0.101-r1.ebuild:
+  alpha/arm/ia64/sh/sparc stable wrt #364973
+
+  28 Apr 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  polkit-0.101-r1.ebuild:
+  x86 stable wrt security bug #364973
+
+  27 Apr 2011; Jeroen Roovers <jer@gentoo.org> polkit-0.101-r1.ebuild:
+  Stable for HPPA (bug #364973).
+
+  27 Apr 2011; Christoph Mende <angelos@gentoo.org> polkit-0.101-r1.ebuild:
+  Stable on amd64 wrt bug #364973
+
+  27 Apr 2011; Kacper Kowalik <xarthisius@gentoo.org> polkit-0.101-r1.ebuild:
+  ppc/ppc64 stable wrt #364973
+
+*polkit-0.101-r1 (25 Apr 2011)
+
+  25 Apr 2011; Nirbheek Chauhan <nirbheek@gentoo.org> -polkit-0.100.ebuild,
+  +polkit-0.101-r1.ebuild:
+  Add patches for CVE-2011-1485, remove vulnerable 0.100 version
+
+  22 Mar 2011; Kacper Kowalik <xarthisius@gentoo.org> polkit-0.99-r1.ebuild:
+  ppc/ppc64 stable wrt #354509
+
+  19 Mar 2011; Raúl Porcel <armin76@gentoo.org> polkit-0.99-r1.ebuild:
+  alpha/ia64/sh/sparc stable wrt #354509
+
+  15 Mar 2011; Nirbheek Chauhan <nirbheek@gentoo.org> polkit-0.101.ebuild:
+  PDEPEND on 0.101 version of polkit-gnome
+
+  13 Mar 2011; Markus Meier <maekke@gentoo.org> polkit-0.99-r1.ebuild:
+  arm stable, bug #354509
+
+*polkit-0.101 (11 Mar 2011)
+
+  11 Mar 2011; Samuli Suominen <ssuominen@gentoo.org> +polkit-0.101.ebuild:
+  Version bump.
+
+  07 Mar 2011; Jeroen Roovers <jer@gentoo.org> polkit-0.99-r1.ebuild:
+  Stable for HPPA (bug #354509).
+
+  04 Mar 2011; Thomas Kahle <tomka@gentoo.org> polkit-0.99-r1.ebuild:
+  x86 stable per bug 354509
+
+  23 Feb 2011; Markos Chandras <hwoarang@gentoo.org> polkit-0.99-r1.ebuild:
+  Stable on amd64 wrt bug #354509
+
+*polkit-0.100 (23 Feb 2011)
+
+  23 Feb 2011; Nirbheek Chauhan <nirbheek@gentoo.org> +polkit-0.100.ebuild:
+  Bump to 0.100
+
+  24 Jan 2011; Samuli Suominen <ssuominen@gentoo.org> polkit-0.99-r1.ebuild:
+  USE="kde" to pull in authentication agent for KDE.
+
+  21 Jan 2011; Jeroen Roovers <jer@gentoo.org> polkit-0.99-r1.ebuild:
+  Marked ~hppa (bug #296548).
+
+*polkit-0.99-r1 (25 Dec 2010)
+
+  25 Dec 2010; Samuli Suominen <ssuominen@gentoo.org> +polkit-0.99-r1.ebuild:
+  Revision bump to remove static archives (.a) and libtool archives (.la).
+  USE="gtk" to pull in authentication agent for GTK+ based desktops.
+
+*polkit-0.99 (25 Sep 2010)
+
+  25 Sep 2010; <nirbheek@gentoo.org> +polkit-0.99.ebuild:
+  Bump to 0.99, masked due to >=glib-2.25 requirement
+
+  18 Aug 2010; Markus Meier <maekke@gentoo.org> polkit-0.96-r1.ebuild:
+  arm stable, bug #314899
+
+  14 Aug 2010; Raúl Porcel <armin76@gentoo.org> polkit-0.96-r1.ebuild,
+  polkit-0.96-r2.ebuild:
+  alpha/ia64/sh/sparc stable
+
+  09 Aug 2010; Joseph Jezak <josejx@gentoo.org> polkit-0.96-r1.ebuild:
+  Marked ppc/ppc64 stable.
+
+  25 Jul 2010; Tobias Klausmann <klausman@gentoo.org> polkit-0.96-r2.ebuild:
+  Stable on alpha, bug #329621
+
+  20 Jul 2010; Jeroen Roovers <jer@gentoo.org> polkit-0.96.ebuild,
+  polkit-0.96-r1.ebuild, polkit-0.96-r2.ebuild:
+  Stable for HPPA (bug #314899).
+
+  20 Jul 2010; Jeroen Roovers <jer@gentoo.org> polkit-0.96.ebuild,
+  polkit-0.96-r1.ebuild, polkit-0.96-r2.ebuild:
+  Drop HPPA keywording (bug #324511).
+
+  07 Jul 2010; Nirbheek Chauhan <nirbheek@gentoo.org> polkit-0.96-r1.ebuild,
+  polkit-0.96-r2.ebuild:
+  Add ewarn about ensuring that consolekit sessions are working. Either the
+  user needs to login using a login-manager with consolekit support, or use
+  ck-launch-session to launch the DE as suggested in bug 291116 comment 13
+
+*polkit-0.96-r2 (02 Jul 2010)
+
+  02 Jul 2010; Nirbheek Chauhan <nirbheek@gentoo.org>
+  +polkit-0.96-r2.ebuild, metadata.xml:
+  USE=expat was quite useless, expat is mandatory in polkit. Don't create
+  user 'polkituser', it was used by policykit, but isn't by polkit. Also,
+  add introspection support
+
+  04 Jun 2010; Markus Meier <maekke@gentoo.org> polkit-0.96-r1.ebuild:
+  x86 stable, bug #314899
+
+  03 May 2010; Olivier Crête <tester@gentoo.org> polkit-0.96-r1.ebuild:
+  amd64 stable, bug #314899
+
+  25 Apr 2010; Raúl Porcel <armin76@gentoo.org> polkit-0.96.ebuild,
+  polkit-0.96-r1.ebuild:
+  Add ~sh
+
+  13 Apr 2010; Alexis Ballier <aballier@gentoo.org> polkit-0.96-r1.ebuild,
+  +files/polkit-0.96-getcwd.patch:
+  Fix build on fbsd and keyword it x86-fbsd
+
+  25 Mar 2010; Nirbheek Chauhan <nirbheek@gentoo.org> polkit-0.96.ebuild,
+  polkit-0.96-r1.ebuild:
+  Raise gtk-doc{,-am} dependencies. Fixes bug 311085
+
+  21 Mar 2010; Nirbheek Chauhan <nirbheek@gentoo.org>
+  -files/polkit-0.93-fix-daemon-name.patch, -polkit-0.94.ebuild,
+  -polkit-0.95.ebuild:
+  Remove old
+
+*polkit-0.96-r1 (21 Mar 2010)
+
+  21 Mar 2010; Nirbheek Chauhan <nirbheek@gentoo.org>
+  +polkit-0.96-r1.ebuild:
+  Update with newer version of polkit-shadow patch
+
+  07 Mar 2010; Nirbheek Chauhan <nirbheek@gentoo.org> polkit-0.96.ebuild:
+  Fix minor problems with SRC_URI
+
+  07 Mar 2010; Nirbheek Chauhan <nirbheek@gentoo.org> polkit-0.96.ebuild:
+  Add experimental shadow support, bug 291116 . Patch thanks to the
+  slackware folks.
+
+  28 Feb 2010; Raúl Porcel <armin76@gentoo.org> polkit-0.96.ebuild:
+  Add ~alpha/~arm/~ia64/~sparc
+
+  16 Feb 2010; Joseph Jezak <josejx@gentoo.org> polkit-0.96.ebuild:
+  Marked ~ppc/~ppc64 for bug #296548.
+
+*polkit-0.96 (23 Jan 2010)
+
+  23 Jan 2010; Nirbheek Chauhan <nirbheek@gentoo.org> +polkit-0.96.ebuild:
+  Version bump to 0.96; lots of bugfixes, see NEWS
+
+  06 Jan 2010; Jeroen Roovers <jer@gentoo.org> polkit-0.95.ebuild:
+  Marked ~hppa (bug #296548).
+
+  11 Dec 2009; Nirbheek Chauhan <nirbheek@gentoo.org> polkit-0.95.ebuild:
+  Add sys-auth/consolekit-0.4.0[polkit] to PDEPEND; needed for checking if
+  the user is in an active/local session via dbus methods
+
+*polkit-0.95 (14 Nov 2009)
+
+  14 Nov 2009; Nirbheek Chauhan <nirbheek@gentoo.org> +polkit-0.95.ebuild:
+  Bump to 0.95 -- new lockdown API, last dev version till 1.0
+
+  30 Oct 2009; Nirbheek Chauhan <nirbheek@gentoo.org>
+  -files/polkit-0.92-zsh-completions.patch, polkit-0.94.ebuild:
+  Remove zsh-completion (bug 291114), force pam support on (bug 291116)
+
+*polkit-0.94 (29 Oct 2009)
+
+  29 Oct 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +files/polkit-0.92-zsh-completions.patch,
+  +files/polkit-0.93-fix-daemon-name.patch, +polkit-0.94.ebuild,
+  +metadata.xml:
+  Initial ebuild for GNOME 2.28.
+
