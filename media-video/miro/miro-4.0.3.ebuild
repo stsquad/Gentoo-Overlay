@@ -1,11 +1,12 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header: /var/cvsroot/gentoo-x86/media-video/miro/miro-4.0.1.ebuild,v 1.1 2011/05/25 14:23:34 scarabeus Exp $
 
-EAPI="2"
-PYTHON_DEPEND="2:2.6"
+EAPI=3
 
-inherit fdo-mime gnome2-utils python distutils
+PYTHON_DEPEND="2:2.7"
+PYTHON_USE_WITH="sqlite"
+inherit eutils fdo-mime gnome2-utils distutils
 
 DESCRIPTION="Open source video player and podcast client"
 HOMEPAGE="http://www.getmiro.com/"
@@ -13,8 +14,8 @@ SRC_URI="http://ftp.osuosl.org/pub/pculture.org/${PN}/src/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
-IUSE="libnotify faac faad +ffmpeg mp3 musepack theora vorbis x264 xvid"
+KEYWORDS="~amd64 ~x86"
+IUSE="libnotify aac musepack xvid"
 
 CDEPEND="
 	dev-libs/glib:2
@@ -22,38 +23,31 @@ CDEPEND="
 	>=dev-python/pyrex-0.9.6.4
 	dev-python/pygtk:2
 	dev-python/pygobject:2
-	>=net-libs/webkit-gtk-1.1.15"
+	>=virtual/ffmpeg-0.6.90"
 
 RDEPEND="${CDEPEND}
-	libnotify? ( dev-python/notify-python )
-	|| ( dev-lang/python[sqlite] dev-python/pysqlite:2 )
 	dev-python/dbus-python
 	dev-python/pycairo
-	>=dev-python/pywebkitgtk-1.1.5
-	dev-python/pycurl
 	dev-python/gconf-python
 	dev-python/gst-python:0.10
-
-	=net-libs/rb_libtorrent-0.14*[python]
-
-	media-plugins/gst-plugins-meta:0.10[theora?,vorbis?]
-	=media-plugins/gst-plugins-pango-0.10*
-	faad? ( =media-plugins/gst-plugins-faad-0.10* )
-	mp3? ( =media-plugins/gst-plugins-mad-0.10* )
-	musepack? ( =media-plugins/gst-plugins-musepack-0.10* )
-	x264? ( =media-plugins/gst-plugins-x264-0.10* )
-	xvid? ( =media-plugins/gst-plugins-xvid-0.10* )
-
-	ffmpeg? ( media-video/ffmpeg[faac?,faad?,mp3?,theora?,vorbis?,x264?,xvid?] )
-	theora? ( media-video/ffmpeg2theora )"
+	>=dev-python/pywebkitgtk-1.1.5
+	dev-python/pycurl
+	>=net-libs/rb_libtorrent-0.14.1[python]
+	media-libs/mutagen
+	media-plugins/gst-plugins-meta:0.10
+	media-plugins/gst-plugins-pango:0.10
+	aac? ( media-plugins/gst-plugins-faad:0.10 )
+	libnotify? ( dev-python/notify-python )
+	musepack? ( media-plugins/gst-plugins-musepack:0.10 )
+	xvid? ( media-plugins/gst-plugins-xvid:0.10 )"
 
 DEPEND="${CDEPEND}"
 
 S="${WORKDIR}/${P}/linux"
 
 src_prepare() {
-	# Fix the codec used to convert to ogg audio
-	sed -i -e s/vorbis/libvorbis/ ../resources/conversions/others.conv
+	epatch "${FILESDIR}/${PV}-ffmpeg.patch"
+	distutils_src_prepare
 }
 
 src_install() {
@@ -63,7 +57,7 @@ src_install() {
 	distutils_src_install
 
 	# installing docs
-	dodoc README.gtk ../{ADOPTERS,CREDITS,README} || die "dodoc failed"
+	dodoc README.gtk ../{CREDITS,README} || die "dodoc failed"
 }
 
 pkg_preinst() {
@@ -78,7 +72,7 @@ pkg_postinst() {
 
 	ewarn
 	ewarn "If miro doesn't play some video or audio format, please"
-	ewarn "check your USE flags onemerge -p -v "
+	ewarn "check your USE flags on media-plugins/gst-plugins-meta"
 	ewarn
 	elog "Miro for Linux doesn't support Adobe Flash, therefore you"
 	elog "you will not see any embedded video player on MiroGuide."
@@ -87,5 +81,7 @@ pkg_postinst() {
 
 pkg_postrm() {
 	distutils_pkg_postrm
+	fdo-mime_desktop_database_update
+	fdo-mime_mime_database_update
 	gnome2_icon_cache_update
 }
