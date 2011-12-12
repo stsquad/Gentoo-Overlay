@@ -20,7 +20,7 @@ IUSE=""
 
 DEPEND=">=virtual/jdk-1.3
 	app-emacs/elib
-	>=app-emacs/cedet-1.0_beta3
+	virtual/emacs-cedet
 	dev-java/bsh
 	dev-java/junit:0
 	dev-util/checkstyle"
@@ -46,8 +46,13 @@ src_prepare() {
 }
 
 src_compile() {
+	local cedet
+	cedet=$(${EMACS} ${EMACSFLAGS} --eval '(princ (locate-library "cedet"))')
+    	cedet=${cedet%/*}            # get directory part
+	[[ -n ${cedet} && -d ${cedet} ]] || die "CEDET not found"
+
 	eant bindist \
-		-Dcedet.dir="${EPREFIX}${SITELISP}/cedet" \
+		-Dcedet.dir="${cedet}" \
 		-Delib.dir="${EPREFIX}${SITELISP}/elib"
 
 	use doc && eant source-doc
