@@ -19,4 +19,5 @@ SLOT="0"
 DEPEND="${RDEPEND}
 	|| ( dev-python/rope dev-python/jedi )
 	dev-python/pyflakes
-	dev-python/pip"
+	dev-python/pip
+	dev-python/nose"
