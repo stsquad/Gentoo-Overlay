@@ -2,13 +2,14 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header:
 
-EAPI="4"
+EAPI="5"
+PYTHON_COMPAT=( python2_7 )
 PYTHON_DEPEND="*:2.6"
 SUPPORT_PYTHON_ABIS="1"
 RESTRICT_PYTHON_ABIS="2.4 2.5"
 DISTUTILS_SRC_TEST="nosetests"
 
-inherit distutils
+inherit distutils-r1
 
 MY_PN="i3-py"
 MY_P="${MY_PN}-${PV/_/-}"
