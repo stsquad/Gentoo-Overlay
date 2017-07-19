@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+
+<repositories version="1.0">
+	<repo priority="50" quality="experimental" status="unofficial">
+		<name>alexs-overlay</name>
+		<description>My personal Gentoo Overlay which contains random ebuilds.</description>
+		<homepage>https://github.com/stsquad/Gentoo-Overlay</homepage>
+		<owner>
+			<email>alex@bennee.com</email>
+		</owner>
+		<source type="git">https://github.com/stsquad/Gentoo-Overlay.git</source>
+	</repo>
+</repositories>
