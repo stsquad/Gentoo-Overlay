@@ -1,0 +1,14 @@
+diff -r 362aa7351292 python-ui/uihelpers.py
+--- a/python-ui/uihelpers.py	Sun Jun 03 17:30:22 2018 +0200
++++ b/python-ui/uihelpers.py	Wed Jun 06 15:42:54 2018 +0100
+@@ -98,9 +98,7 @@
+         # first try whether there are local Hatari docs in standard place
+         # for this Hatari/UI version
+         sep = os.sep
+-        path = self.get_binary_path("hatari")
+-        path = sep.join(path.split(sep)[:-2]) # remove "bin/hatari"
+-        path = path + sep + "share" + sep + "doc" + sep + "hatari" + sep
++        path = "@DOCDIR@"
+         if os.path.exists(path + "manual.html"):
+             return path
+         # if not, point to latest Hatari HG version docs
