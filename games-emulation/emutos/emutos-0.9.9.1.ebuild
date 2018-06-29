@@ -11,7 +11,7 @@ SRC_URI="mirror://sourceforge/emutos/emutos-src-0.9.9.1.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 ~arm ~arm64 ~x86"
 IUSE=""
 
 RDEPEND=""
@@ -20,6 +20,7 @@ DEPEND="app-arch/unzip"
 S="${WORKDIR}"
 
 src_install() {
-	dolib */*.img
+	insinto /usr/share/emutos
+	doins */*.img
 	dodoc emutos-512k-${PV}/{readme.txt,doc/{announce,authors,changelog,status}.txt}
 }
