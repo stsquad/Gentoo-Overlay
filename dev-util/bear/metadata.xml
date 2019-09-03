@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="project">
+    <email>alex.bennee@linaro.org</email>
+    <name>Alex Bennée</name>
+  </maintainer>
+  <longdescription>
+    Build EAR is a tool for creating compilation databases by
+    "listening" to a build. Invoke it with bear &lt;build command&gt;.
+  </longdescription>
+</pkgmetadata>
